@@ -13,6 +13,6 @@ namespace MusicShop.Models
         {
         }
 
-        public DbSet<MusicShop.Models.Test> Test { get; set; }
+        public DbSet<Test> Test { get; set; }
     }
 }
