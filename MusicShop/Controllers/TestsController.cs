@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MusicShop.Models
 {
-    public class Tests : Controller
+    public class TestsController : Controller
     {
         private readonly MusicShopContentContext _context;
 
-        public Tests(MusicShopContentContext context)
+        public TestsController(MusicShopContentContext context)
         {
             _context = context;
         }
