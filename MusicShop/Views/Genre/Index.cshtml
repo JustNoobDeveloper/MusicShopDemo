@@ -1,0 +1,38 @@
+﻿@model IEnumerable<MusicShop.Models.Genre>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GenreName)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+      
+        {
+            <tr>
+                <td>
+                    
+                </td>
+
+                <td>
+                    <a asp-action="Edit">Edit</a>
+                    <a asp-action="Delete">Delete</a>
+                    <a asp-action="Details">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+    </table>
