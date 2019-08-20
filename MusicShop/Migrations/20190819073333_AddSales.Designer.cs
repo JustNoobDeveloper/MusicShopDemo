@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MusicShop.Models;
 
 namespace MusicShop.Migrations
 {
     [DbContext(typeof(MusicShopContentContext))]
-    partial class MusicShopContentContextModelSnapshot : ModelSnapshot
+    [Migration("20190819073333_AddSales")]
+    partial class AddSales
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,8 +42,6 @@ namespace MusicShop.Migrations
 
                     b.Property<string>("ArtistName");
 
-                    b.Property<int?>("GenreID");
-
                     b.Property<string>("MusicName");
 
                     b.Property<decimal>("Price");
@@ -49,8 +49,6 @@ namespace MusicShop.Migrations
                     b.Property<int>("Quantity");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("GenreID");
 
                     b.ToTable("Music");
                 });
@@ -87,13 +85,6 @@ namespace MusicShop.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Test");
-                });
-
-            modelBuilder.Entity("MusicShop.Models.Music", b =>
-                {
-                    b.HasOne("MusicShop.Models.Genre", "Genre")
-                        .WithMany("Musics")
-                        .HasForeignKey("GenreID");
                 });
 #pragma warning restore 612, 618
         }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MusicShop.Models;
 
 namespace MusicShop.Migrations
 {
     [DbContext(typeof(MusicShopContentContext))]
-    partial class MusicShopContentContextModelSnapshot : ModelSnapshot
+    [Migration("20190820094008_AddGenreToMusic")]
+    partial class AddGenreToMusic
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -92,7 +94,7 @@ namespace MusicShop.Migrations
             modelBuilder.Entity("MusicShop.Models.Music", b =>
                 {
                     b.HasOne("MusicShop.Models.Genre", "Genre")
-                        .WithMany("Musics")
+                        .WithMany()
                         .HasForeignKey("GenreID");
                 });
 #pragma warning restore 612, 618

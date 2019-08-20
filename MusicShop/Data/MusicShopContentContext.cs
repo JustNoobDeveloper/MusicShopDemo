@@ -15,5 +15,8 @@ namespace MusicShop.Models
 
         public DbSet<Test> Test { get; set; }
         public DbSet<Genre> Genre { get; set; }
+        public DbSet<Music> Music { get; set; }
+        public DbSet<Sales> Sales { get; set; }
+
     }
 }
