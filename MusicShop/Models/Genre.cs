@@ -8,5 +8,7 @@ namespace MusicShop.Models
         public int ID { get; set; }
         [DisplayName("Genre Name")]
         public string GenreName { get; set; }
+
+        public ICollection<Music> Musics { get; set; }
     }
 }
