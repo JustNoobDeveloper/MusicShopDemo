@@ -4,22 +4,23 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MusicShop.Models;
 
-namespace MusicShop.Models
+namespace MusicShop.Controllers
 {
-    public class GenreController : Controller
+    public class SalesController : Controller
     {
         private readonly MusicShopContentContext _context;
 
-        public GenreController(MusicShopContentContext context)
+        public SalesController(MusicShopContentContext context)
         {
             _context = context;
         }
+
         public IActionResult Index()
         {
-
-            var genres = _context.Genre.ToList();
-            return View(genres);
+            var sales = _context.Sales.ToList();
+            return View(sales);
         }
         public IActionResult Details(int? id)
         {
@@ -28,35 +29,32 @@ namespace MusicShop.Models
                 return NotFound();
             }
 
-            var genre = _context.Genre
+            var sales = _context.Sales
                 .FirstOrDefault(m => m.ID == id);
-            if (genre == null)
+            if (sales == null)
             {
                 return NotFound();
             }
 
-            return View(genre);
+            return View(sales);
         }
         public IActionResult Create()
         {
             return View();
         }
-
-        // POST: Tests/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("ID,GenreName")] Genre genre)
+        public IActionResult Create([Bind ("ID")] Sales sales)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(genre);
+                _context.Add(sales);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            return View(genre);
+            return View(sales);
         }
+
         public IActionResult Edit(int? id)
         {
             if (id == null)
@@ -64,32 +62,36 @@ namespace MusicShop.Models
                 return NotFound();
             }
 
-            var genre = _context.Genre.Find(id);
-            if (genre == null)
+            var sales = _context.Sales.Find(id);
+            if (sales == null)
             {
                 return NotFound();
             }
-            return View(genre);
+            return View(sales);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("ID,GenreName")] Genre genre)
+
+        public IActionResult Edit(int id, [Bind ("ID") ] Sales sales )
         {
-            if (id != genre.ID)
+            if (id != sales.ID)
             {
                 return NotFound();
             }
+
+            
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(genre);
+                    _context.Update(sales);
                     _context.SaveChanges();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!GenreExists(genre.ID))
+
+                    if (!SalesExists(sales.ID))
                     {
                         return NotFound();
                     }
@@ -97,12 +99,12 @@ namespace MusicShop.Models
                     {
                         throw;
                     }
-                    
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(genre);
+            return View(sales);
         }
+
         public IActionResult Delete(int? id)
         {
             if (id == null)
@@ -110,31 +112,30 @@ namespace MusicShop.Models
                 return NotFound();
             }
 
-            var genre =  _context.Genre
+            var sales = _context.Sales
                 .FirstOrDefault(m => m.ID == id);
-            if (genre == null)
+            if (sales == null)
             {
                 return NotFound();
             }
-
-            return View(genre);
+            return View(sales);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+
         public IActionResult DeleteConfirmed(int id)
         {
-            var genre = _context.Genre.Find(id);
-            _context.Genre.Remove(genre);
+
+            var sales = _context.Sales.Find(id);
+            _context.Sales.Remove(sales);
             _context.SaveChanges();
-            ViewBag.Message = "Data Deleted";
             return RedirectToAction(nameof(Index));
         }
 
-        private bool GenreExists(int id)
+        private bool SalesExists(int iD)
         {
-            return _context.Genre.Any(e => e.ID == id);
+            return _context.Sales.Any(e => e.ID == iD);
         }
     }
-
 }
