@@ -6,12 +6,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MusicShop.Models
 {
-    public class MusicShopContentContext : DbContext
-    {
-        public MusicShopContentContext (DbContextOptions<MusicShopContentContext> options)
-            : base(options)
-        {
-        }
+	public class MusicShopContentContext : DbContext
+	{
+		public MusicShopContentContext (DbContextOptions<MusicShopContentContext> options)
+			: base(options)
+		{
+		}
 
         public DbSet<Test> Test { get; set; }
         public DbSet<Genre> Genre { get; set; }
