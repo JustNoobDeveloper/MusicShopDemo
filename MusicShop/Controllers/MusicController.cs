@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MusicShop.Models;
 
@@ -41,6 +42,9 @@ namespace MusicShop.Controllers
 
         public IActionResult Create()
         {
+            //TODO: get all genre and return to view using viewbag
+
+            ViewBag.Genre = new SelectList(_context.Genre, "GenreId", "GenreName");
             return View();
         }
 
