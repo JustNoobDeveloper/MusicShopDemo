@@ -44,7 +44,7 @@ namespace MusicShop.Controllers
         {
             //TODO: get all genre and return to view using viewbag
 
-            ViewBag.Genre = new SelectList(_context.Genre, "GenreId", "GenreName");
+            ViewBag.Genre = new SelectList(_context.Genre, "ID", "GenreName");
             return View();
         }
 

@@ -16,10 +16,10 @@ namespace MusicShop.Models
         public string ArtistName { get; set; }
         [Range(1, 100)]
         [DataType(DataType.Currency)]
-        public Decimal Price { get; set; }
+        public decimal Price { get; set; }
         public int Quantity { get; set; }
 
-        public int GenreId { get; set; }
+        public int? GenreId { get; set; }
         public Genre Genre { get; set; }
     }
 }
