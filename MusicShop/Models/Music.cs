@@ -18,6 +18,7 @@ namespace MusicShop.Models
         [DataType(DataType.Currency)]
         public Decimal Price { get; set; }
         public int Quantity { get; set; }
+        public int GenreId { get; set; }
         public Genre Genre { get; set; }
     }
 }
