@@ -18,9 +18,9 @@ namespace MusicShop.Models
         }
 
         // GET: Tests
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.Test.ToListAsync());
+            return View(_context.Test.ToListAsync());
         }
 
         // GET: Tests/Details/5

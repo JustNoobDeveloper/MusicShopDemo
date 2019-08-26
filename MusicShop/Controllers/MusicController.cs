@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MusicShop.Models;
 
@@ -18,9 +19,7 @@ namespace MusicShop.Controllers
         }
         public IActionResult Index()
         {
-
-            var music = _context.Music.ToList();
-            return View(music);
+            return View(_context.Music.Include(g => g.Genre).ToList());
         }
         public IActionResult Details(int? id)
         {
@@ -41,12 +40,13 @@ namespace MusicShop.Controllers
 
         public IActionResult Create()
         {
+            ViewBag.Genre   = new SelectList(_context.Genre, "ID", "GenreName");
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind ("ID,MusicName,ArtistName,Price,Quantity")] Music music)
+        public IActionResult Create([Bind ("ID,MusicName,ArtistName,Price,Quantity,GenreId")] Music music)
         {
             if (ModelState.IsValid)
             {
@@ -70,12 +70,13 @@ namespace MusicShop.Controllers
             {
                 return NotFound();
             }
+            ViewBag.Genre = new SelectList(_context.Genre, "ID", "GenreName");
             return View(music);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit( int id, [Bind("ID,MusicName,ArtistName,Price,Quantity")] Music music)
+        public IActionResult Edit( int id, [Bind("ID,MusicName,ArtistName,Price,Quantity,GenreId")] Music music)
         {
             if ( id != music.ID)
             {
@@ -119,7 +120,7 @@ namespace MusicShop.Controllers
             {
                 return NotFound();
             }
-
+            ViewBag.Genre = new SelectList(_context.Genre, "ID", "GenreName");
             return View(music);
         }
 

@@ -20,6 +20,9 @@
                 @Html.DisplayNameFor(model => model.ArtistName)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Genre.GenreName)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Price)
             </th>
             <th>
@@ -29,14 +32,18 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var music in Model)
-        {
+   
+    @foreach (var music in Model)
+    {
         <tr>
             <td>
                 @music.MusicName
             </td>
             <td>
                 @music.ArtistName
+            </td>
+            <td>
+                @music.Genre.GenreName
             </td>
             <td>
                 @music.Price
@@ -50,6 +57,6 @@
                 <a asp-action="Delete" asp-route-id="@music.ID">Delete</a>
             </td>
         </tr>
-        }
+    }
     </tbody>
 </table>
