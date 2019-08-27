@@ -23,6 +23,7 @@ namespace MusicShop.Controllers
         }
         public IActionResult Details(int? id)
         {
+            _context.Music.Include(g => g.Genre).ToList();
             if (id == null)
             {
                 return NotFound();
@@ -109,6 +110,7 @@ namespace MusicShop.Controllers
 
         public IActionResult Delete(int? id)
         {
+            _context.Music.Include(g => g.Genre).ToList();
             if (id == null)
             {
                 return NotFound();
@@ -120,19 +122,21 @@ namespace MusicShop.Controllers
             {
                 return NotFound();
             }
-            ViewBag.Genre = new SelectList(_context.Genre, "ID", "GenreName");
+            
             return View(music);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed (int id)
+        public IActionResult DeleteConfirmed(int id)
         {
+            
             var music = _context.Music.Find(id);
             _context.Music.Remove(music);
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
+
 
         private bool MusicExists(int Id)
         {

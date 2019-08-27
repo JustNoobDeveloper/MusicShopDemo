@@ -31,13 +31,14 @@
             <span asp-validation-for="Quantity" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="GenreId" class="control-label"></label>
+            <label asp-for="GenreId" class="control-label">Genre Name</label>
             <select asp-for="GenreId" class="form-control" asp-items="ViewBag.Genre">
                 <option value=""> Select Genre</option>
             </select>
         </div>
         <div class="form-group">
             <input type="submit" value="Create" class="btn btn-default" />
+            <a asp-action="Index">Back to List</a>
         </div>
     </form>
 </div>
