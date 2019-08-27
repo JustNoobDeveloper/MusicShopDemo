@@ -10,8 +10,8 @@ using MusicShop.Models;
 namespace MusicShop.Migrations
 {
     [DbContext(typeof(MusicShopContentContext))]
-    [Migration("20190821030025_RestoreOriDB")]
-    partial class RestoreOriDB
+    [Migration("20190821031726_addedMusicsIntoGenre")]
+    partial class addedMusicsIntoGenre
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -94,7 +94,7 @@ namespace MusicShop.Migrations
             modelBuilder.Entity("MusicShop.Models.Music", b =>
                 {
                     b.HasOne("MusicShop.Models.Genre", "Genre")
-                        .WithMany()
+                        .WithMany("Musics")
                         .HasForeignKey("GenreID");
                 });
 #pragma warning restore 612, 618
