@@ -44,7 +44,7 @@ namespace MusicShop.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind ("ID")] Sales sales)
+        public IActionResult Create([Bind ("ID,ProductID,Date,PaymentMethod,Total")] Sales sales)
         {
             if (ModelState.IsValid)
             {
@@ -73,7 +73,7 @@ namespace MusicShop.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public IActionResult Edit(int id, [Bind ("ID") ] Sales sales )
+        public IActionResult Edit(int id, [Bind ("ID,ProductID,Date,PaymentMethod,Total") ] Sales sales )
         {
             if (id != sales.ID)
             {

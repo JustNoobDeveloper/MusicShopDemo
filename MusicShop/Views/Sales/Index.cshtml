@@ -1,7 +1,48 @@
-﻿
+﻿@model IEnumerable<MusicShop.Models.Sales>
+
 @{
     ViewData["Title"] = "Index";
 }
 
 <h2>Index</h2>
 
+<p>
+<a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentMethod)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var sales in Model)
+        {
+            <tr>
+                <td>
+                    @sales.Date
+                </td>
+                <td>
+                    @sales.PaymentMethod
+                </td>
+                <td>
+                    @sales.Total
+                </td>
+                
+                <td>|
+                    <a asp-action="Details" asp-route-id="@sales.ID">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
